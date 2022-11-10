@@ -1,21 +1,53 @@
 var Yogurt = require('../models/Yogurt');
+
 // List of all Yogurts
+exports.Yogurt_list = async function (req, res) {
+    try {
+        theYogurts = await Yogurt.find();
+        res.send(theYogurts);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
+/*// List of all Yogurts
 exports.Yogurt_list = function(req, res) {
  res.send('NOT IMPLEMENTED: Yogurt list');
-};
+};*/
 // for a specific Yogurt.
-exports.Yogurt_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Yogurt detail: ' + req.params.id);
+exports.Yogurt_detail = function (req, res) {
+    res.send('NOT IMPLEMENTED: Yogurt detail: ' + req.params.id);
 };
 // Handle Yogurt create on POST.
-exports.Yogurt_create_post = function(req, res) {
- res.send('NOT IMPLEMENTED: Yogurt create POST');
+exports.Yogurt_create_post = async function (req, res) {
+    console.log(req.body)
+    let document = new Yogurt();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"hall_name":"phoenix","hall_rent":10000,"hall_size":1000}
+    document.Yogurt_flavours = req.body.Yogurt_flavours;
+    document.Yogurt_price = req.body.Yogurt_price;
+    document.Yogurt_quantity = req.body.Yogurt_quantity;
+    try {
+        let result = await document.save();
+        res.send(result);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 };
+/*exports.Yogurt_create_post = function(req, res) {
+ res.send('NOT IMPLEMENTED: Yogurt create POST');
+};*/
 // Handle Yogurt delete form on DELETE.
-exports.Yogurt_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: Yogurt delete DELETE ' + req.params.id);
+exports.Yogurt_delete = function (req, res) {
+    res.send('NOT IMPLEMENTED: Yogurt delete DELETE ' + req.params.id);
 };
 // Handle Yogurt update form on PUT.
-exports.Yogurt_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Yogurt update PUT' + req.params.id);
+exports.Yogurt_update_put = function (req, res) {
+    res.send('NOT IMPLEMENTED: Yogurt update PUT' + req.params.id);
 };
