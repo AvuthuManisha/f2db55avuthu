@@ -1,9 +1,7 @@
 var express = require('express');
+const Yogurt_controlers= require('../controllers/Yogurt');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('Yogurt', { title: 'Search Results for Yogurt' });
-});
-
+/* GET Yogurts. */
+router.get('/', Yogurt_controlers.Yogurt_view_all_Page );
 module.exports = router;

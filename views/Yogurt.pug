@@ -2,15 +2,15 @@ extends layout
 
 block content
   h1= title
-  - let results=[{Yogurt_flavours:"Strawberry",Yogurt_price:50, Yogurt_quantity:100},{Yogurt_flavours:"Vanilla",Yogurt_price:60,Yogurt_quantity :200},{Yogurt_flavours :"Cherry", Yogurt_price :70, Yogurt_quantity :300}]
+  - let result  = results;
   div(class="container-fluid")
   div(class="row")
-   each value,index in results
-    div(class="col-sm-2" onclick=`buy(${index})`)  #{value.Yogurt_flavours} curd, price #{value.Yogurt_price}, with quantity #{value.Yogurt_quantity}
-   script.
-    function buy(index)
-    {
-      alert(`Your purchased Item ${index+1}`)
-    }
+    each value,index in results
+      div(class="col-sm-2" onclick=`buy(${index})`)  #{value.Yogurt_flavours} curd, price #{value.Yogurt_price}, with quantity #{value.Yogurt_quantity}
+    script.
+      function buy(index)
+      {
+        alert(`Your purchased Item ${index+1}`)
+      }
   
  
