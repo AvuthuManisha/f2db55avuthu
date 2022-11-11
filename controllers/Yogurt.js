@@ -17,9 +17,16 @@ exports.Yogurt_list = function(req, res) {
  res.send('NOT IMPLEMENTED: Yogurt list');
 };*/
 // for a specific Yogurt.
-exports.Yogurt_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Yogurt detail: ' + req.params.id);
-};
+exports.Yogurt_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Yogurt.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
 
 // Handle Yogurt create on POST.
 exports.Yogurt_create_post = async function(req, res) {
@@ -46,9 +53,26 @@ exports.Yogurt_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Yogurt delete DELETE ' + req.params.id);
 };
 // Handle Yogurt update form on PUT.
-exports.Yogurt_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Yogurt update PUT' + req.params.id);
-};
+
+   exports.Yogurt_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+   ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await Yogurt.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.Yogurt_flavours)
+    toUpdate.Yogurt_flavours = req.body.Yogurt_flavours;
+    if(req.body.Yogurt_price) toUpdate.Yogurt_price = req.body.Yogurt_price;
+    if(req.body.Yogurt_quantity) toUpdate.Yogurt_quantity = req.body.Yogurt_quantity;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+   failed`);
+    }
+   };
 
 // VIEWS
 // Handle a show all view
