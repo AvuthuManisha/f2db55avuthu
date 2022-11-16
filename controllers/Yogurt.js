@@ -99,3 +99,32 @@ exports.Yogurt_delete = async function(req, res) {
     res.send(`{"error": Error deleting ${err}}`);
     }
    };
+
+   // Handle a show one view with id specified by query
+exports.Yogurt_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await Yogurt.findById( req.query.id)
+    res.render('Yogurtdetail',
+   { title: 'Yogurt Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+
+   // Handle building the view for creating a Yogurt.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.Yogurt_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('Yogurtcreate', { title: 'Yogurt Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+   

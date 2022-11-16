@@ -1,0 +1,20 @@
+extends layout
+block content
+ h1= title
+ - let Yogurtid = toShow._id
+ - let Yogurt_flavours = toShow.Yogurt_flavours
+ - let Yogurt_price = toShow.Yogurt_price
+ - let Yogurt_quantity = toShow.Yogurt_quantity
+ div
+ div.row
+ div(class='YogurtAttr mr-3') Yogurt ID is:
+ div #{Yogurtid}
+ div.row
+ div(class='YogurtAttr mr-3') Yogurt_flavours is:
+ div #{Yogurt_flavours}
+ div.row
+ div(class='YogurtAttr mr-3') Yogurt_price is:
+ div #{Yogurt_price}
+ div.row
+ div(class='YogurtAttr mr-3') Yogurt_quantity is:
+ div #{Yogurt_quantity}
