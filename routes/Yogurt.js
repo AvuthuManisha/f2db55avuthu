@@ -15,4 +15,7 @@ router.get('/create', Yogurt_controlers.Yogurt_create_Page);
 /* GET create update page */
 router.get('/update', Yogurt_controlers.Yogurt_update_Page);
 
+/* GET delete Yogurt page */
+router.get('/delete', Yogurt_controlers.Yogurt_delete_Page);
+
 module.exports = router;

@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let Yogurtid = toShow._id 
+    - let Yogurt_flavours = toShow.Yogurt_flavours
+    - let Yogurt_price = toShow.Yogurt_price
+    - let Yogurt_quantity = toShow.Yogurt_quantity 
+    - let actionid = "/resource/Yogurts/" + Yogurtid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='YogurtAttr mr-3') Yogurt ID is: 
+        div #{Yogurtid} 
+      div.row 
+        div(class='YogurtAttr mr-3') Yogurt flavours is: 
+        div #{Yogurt_flavours} 
+      div.row 
+        div(class='YogurtAttr mr-3') Yogurt price is: 
+        div #{Yogurt_price} 
+      div.row 
+        div(class='YogurtAttr mr-3') Yogurt quantity is: 
+        div #{Yogurt_quantity} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the Yogurt collection 
+      window.location.href='/Yogurt' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'   
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/Yogurt' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    }
