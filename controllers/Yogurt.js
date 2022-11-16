@@ -86,3 +86,16 @@ exports.Yogurt_view_all_Page = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
    };
+
+   // Handle Yogurt delete on DELETE.
+exports.Yogurt_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Yogurt.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
