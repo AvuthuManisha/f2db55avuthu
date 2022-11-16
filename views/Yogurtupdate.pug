@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Yogurtid = toShow._id 
+  - let Yogurt_flavours = toShow.Yogurt_flavours 
+  - let Yogurt_price = toShow.Yogurt_price
+  - let Yogurt_quantity = toShow.Yogurt_quantity 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{Yogurtid} 
+  - let actionid = "/resource/Yogurts/" + Yogurtid 
+  form(id='YogurtForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.YogurtAttr(for='Yogurt_flavours') Yogurt flavours
+        input#Yogurt_flavours(type='text', name='Yogurt_flavours', value= Yogurt_flavours) 
+    div.form-group 
+        label.YogurtAttr(for='Yogurt_price') Yogurt price 
+        input#Yogurt_price(type='number', name='Yogurt_price', value= Yogurt_price) 
+    div.form-group 
+        label.YogurtAttr(for='Yogurt_quantity') Yogurt quantity 
+        input#Yogurt_quantity(type='number', name='Yogurt_quantity', value= Yogurt_quantity) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['YogurtForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    });
