@@ -7,8 +7,25 @@ a {
   color: #00B7FF;
 }
 
+b{
+  padding-left: 545px;
+}
 
 .YogurtAttr {
   background-color: aquamarine;
   width: 120px;
  }
+
+ .YogurtAttr {
+  font-style: italic;
+  text-align: center;
+  background-color: blanchedalmond;
+ }
+
+
+.c {
+ text-align: center;
+ padding: 50px;
+ background-color:pink;
+ border-radius: 50%;
+}

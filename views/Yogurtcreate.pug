@@ -3,7 +3,9 @@ extends layout
 block content 
   h1= title 
  
-  form(id='YogurtForm', action="/resource/Yogurts", method="POST") 
+  form(id='YogurtForm', action="/resource/Yogurts", method="POST", class='c') 
+    div(class='d').form-group
+        img(src='/images/apple.jpg' width="300px" height="300px")
     div.form-group 
         label.YogurtAttr(for='Yogurt_flavours') Yogurt flavours
         input#Yogurt_flavours(type='text', name='Yogurt_flavours') 
