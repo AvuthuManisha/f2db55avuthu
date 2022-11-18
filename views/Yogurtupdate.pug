@@ -5,20 +5,18 @@ block content
   if (toShow == null)
     h2 No instance to delete 
   else
- 
-  - let Yogurtid = toShow._id 
-  - let Yogurt_flavours = toShow.Yogurt_flavours 
-  - let Yogurt_price = toShow.Yogurt_price
-  - let Yogurt_quantity = toShow.Yogurt_quantity 
-   
-  div.row(class='mb-2') 
+   - let Yogurtid = toShow._id 
+   - let Yogurt_flavours = toShow.Yogurt_flavours 
+   - let Yogurt_price = toShow.Yogurt_price
+   - let Yogurt_quantity = toShow.Yogurt_quantity 
+   - let actionid = "/resource/Yogurts/" + Yogurtid
+   div.row(class='mb-2') 
     div.mr-1 ID is 
-    div #{Yogurtid} 
-  - let actionid = "/resource/Yogurts/" + Yogurtid 
-  form(id='YogurtForm', action= actionid, method="PUT") 
+    div #{Yogurtid}  
+   form(id='YogurtForm', action=actionid, method="PUT") 
     div.form-group 
-        label.YogurtAttr(for='Yogurt_flavours') Yogurt flavours
-        input#Yogurt_flavours(type='text', name='Yogurt_flavours', value= Yogurt_flavours) 
+      label.YogurtAttr(for='Yogurt_flavours') Yogurt flavours
+      input#Yogurt_flavours(type='text', name='Yogurt_flavours', value= Yogurt_flavours) 
     div.form-group 
         label.YogurtAttr(for='Yogurt_price') Yogurt price 
         input#Yogurt_price(type='number', name='Yogurt_price', value= Yogurt_price) 
@@ -27,7 +25,7 @@ block content
         input#Yogurt_quantity(type='number', name='Yogurt_quantity', value= Yogurt_quantity) 
     input(type="submit") 
  
-  script. 
+   script. 
     document.forms['YogurtForm'].addEventListener('submit', (event) => { 
       event.preventDefault(); 
       // TODO do something here to show user that form is being submitted 
